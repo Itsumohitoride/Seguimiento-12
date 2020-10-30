@@ -133,7 +133,7 @@ public class Main{
 
 			
 
-			do{	
+			do{
 
 				typePatient = lector.nextInt();lector.nextLine();
 
@@ -236,7 +236,7 @@ public class Main{
 							break;
 						}
 					}while(option != 1 && option != 2 && option != 3);
-					
+
 					break;
 					default:
 					System.out.println("**********************************************************************");
