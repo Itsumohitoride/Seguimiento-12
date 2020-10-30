@@ -22,11 +22,11 @@ public class CoomevaPatient extends PrepaidMedicinePatient{
 		}
 	}
 
-	public String getCategory(){
+	public Category getCategory(){
 		return category;
 	}
 
-	public void setCategory(){
+	public void setCategory(Category category){
 		this.category = category;
 	}
 }

@@ -1,34 +1,34 @@
-package modedl;
+package model;
 
 public class SURAPatient extends PrepaidMedicinePatient{
 
 	//Attribute
 
-	private String minPolicy;
-	private String maxPolicy;
+	private int minPolicy;
+	private int maxPolicy;
 
 	//Methods
 
-	public SURAPatient(String name, String lastName, int age, String id, String numAffiliation, String minPolicy, String maxPolicy){
+	public SURAPatient(String name, String lastName, int age, String id, String numAffiliation, int minPolicy, int maxPolicy){
 
-		super(name,lastName,age,id);
+		super(name,lastName,age,id,numAffiliation);
 		this.minPolicy = minPolicy;
 		this.maxPolicy = maxPolicy;
 	}
 
-	public String getMinPolicy(){
+	public int getMinPolicy(){
 		return minPolicy;
 	}
 
-	public void setMinPolicy(String minPolicy){
+	public void setMinPolicy(int minPolicy){
 		this.minPolicy = minPolicy;
 	}
 
-	public String getMaxPolicy(){
+	public int getMaxPolicy(){
 		return maxPolicy;
 	}
 
-	public void setMaxPolicy(String maxPolicy){
+	public void setMaxPolicy(int maxPolicy){
 		this.maxPolicy = maxPolicy;
 	}
 }

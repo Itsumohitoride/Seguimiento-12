@@ -4,7 +4,7 @@ public class VaccinationCenter{
 
 	//Attribute
 
-	public final static int PATIENT = 299;
+	public final static int PATIENT = 300;
 
 	//Relation
 
@@ -57,7 +57,7 @@ public class VaccinationCenter{
 		return verific;
 	}
 
-	public boolean createPatient(String name, String lastName, int age, String id, String numAffiliation, String minPolicy, String maxPolicy){
+	public boolean createPatient(String name, String lastName, int age, String id, String numAffiliation, int minPolicy, int maxPolicy){
 
 		boolean verific = false;
 
@@ -71,7 +71,7 @@ public class VaccinationCenter{
 		return verific;
 	}
 
-	public boolean createPatient(String name, String lastName, int age, String id, String numAffiliation, String nomOrganization, String phone){
+	public boolean createPatient(String name, String lastName, int age, String id, String numAffiliation, String nomOrganization, int phone){
 
 		boolean verific = false;
 
@@ -85,13 +85,21 @@ public class VaccinationCenter{
 		return verific;
 	}
 
+	public Patient[] getPatient(){
+		return patient;
+	}
+
+	public void setPatient(Patient[] patient){
+		this.patient = patient;
+	}
+
 	public boolean findPatient(String name, String lastName){
 
 		boolean verific = false;
 
 		for(int i = 0; i<patient.length && !verific; i++){
 
-			if(patient[i] != null && name.equalsIgnoreCase(patient[i].getName()) && lastName.equalsIgnoreCase(patient[i].getLasName())){
+			if(patient[i] != null && name.equalsIgnoreCase(patient[i].getName()) && lastName.equalsIgnoreCase(patient[i].getLastName())){
 				verific = true;
 			} 
 		}
@@ -105,11 +113,10 @@ public class VaccinationCenter{
 
 		for(int i = 0; i<patient.length && !verific; i++){
 
-			if(patient[i] != null && id.equalsIgnoreCase(patient[i].getId())){
+			if(patient[i] != null && patient[i].getId().equalsIgnoreCase(id)){
 				verific = true;
 			} 
 		}
-
 		return verific;
 	}
 
@@ -122,6 +129,8 @@ public class VaccinationCenter{
 		int coomevaPatient = 0;
 		int suraPatient = 0;
 		int otherPatient = 0;
+
+		PrivatePatient objPrivate;
 
 		for(int i = 0; i<patient.length; i++){
 
@@ -160,84 +169,87 @@ public class VaccinationCenter{
 		String message = "";
 		boolean verific = false;
 
+		PrivatePatient objPrivate;
+		EPSPatient objEPS;
+		CoomevaPatient objCoomeva;
+		SURAPatient objSURA;
+		OtherPatient objOther;
 
-		for(int i = 0; i<patient.length && !verific; i++){
+		for(int i = 0; i<patient.length && !verific; i++){		
 
-			if(patient[i] != null && patient[i] instanceof PrivatePatient){
+			if(patient[i] != null && patient[i] instanceof PrivatePatient && id.equalsIgnoreCase(patient[i].getId())){
+
+				objPrivate = (PrivatePatient) patient[i];
+
 				message = "\n****************** informacion del paciente ******************\n"+
 							"** Nombre: "+patient[i].getName()+"\n"+
-							"** Apellido: "+patient[i].getLasName()+"\n"+
-							"** Telefono de contacto: "+patient[i].getNumContactPatient()+"\n"+
+							"** Apellido: "+patient[i].getLastName()+"\n"+
+							"** Telefono de contacto: "+objPrivate.getNumContactPatient()+"\n"+
 							"** Edad: "+patient[i].getAge()+"\n"+
 							"** Documento: "+patient[i].getId()+"\n"+
-							"** Medico tratante: "+patient[i].getNameDoc()+"\n"+
-							"**      - Telefono: "+patient[i].getNumDoc()+"\n"+
-							"**      - Numero de licencia: "+patient[i].getNumLicense()+"\n"+
+							"** Medico tratante: "+objPrivate.getNameDoc()+"\n"+
+							"**      - Telefono: "+objPrivate.getNumDoc()+"\n"+
+							"**      - Numero de licencia: "+objPrivate.getNumLicense()+"\n"+
+		           			"**************************************************************\n";
+		        verific = true;
+			}
+			else if(patient[i] != null && patient[i] instanceof EPSPatient && id.equalsIgnoreCase(patient[i].getId())){
+
+				objEPS = (EPSPatient) patient[i];
+
+				message = "\n****************** informacion del paciente ******************\n"+
+							"** Nombre: "+patient[i].getName()+"\n"+
+							"** Apellido: "+patient[i].getLastName()+"\n"+
+							"** Edad: "+patient[i].getAge()+"\n"+
+							"** Documento: "+patient[i].getId()+"\n"+
+							"** Nombre de la EPS: "+objEPS.getEps()+"\n"+
+							"** Numero de orden de servicio: "+objEPS.getNumService()+"\n"+
 		           			"**************************************************************";
 		        verific = true;
 			}
-			else if(patient[i] != null && patient[i] instanceof EPSPatient){
-				message = "\n****************** informacion del paciente ******************\n"+
-							"** Nombre: "+patient[i].getName()+"\n"+
-							"** Apellido: "+patient[i].getLasName()+"\n"+
-							"** Telefono de contacto: "+patient[i].getNumContactPatient()+"\n"+
-							"** Edad: "+patient[i].getAge()+"\n"+
-							"** Documento: "+patient[i].getId()+"\n"+
-							"** Medico tratante: "+patient[i].getNameDoc()+"\n"+
-							"**      - Telefono: "+patient[i].getNumDoc()+"\n"+
-							"**      - Numero de licencia: "+patient[i].getNumLicense()+"\n"+
-							"** Nombre de la EPS: "+patient[i].getEps()+"\n"+
-							"** Numero de orden de servicio: "+patient[i].getNumService()+"\n"+
-		           			"**************************************************************";
-		        verific = true;
-			}
-			else if(patient[i] != null && patient[i] instanceof CoomevaPatient){
+			else if(patient[i] != null && patient[i] instanceof CoomevaPatient && id.equalsIgnoreCase(patient[i].getId())){
+
+				objCoomeva = (CoomevaPatient) patient[i];
 
 				message = "\n****************** informacion del paciente ******************\n"+
 							"** Nombre: "+patient[i].getName()+"\n"+
-							"** Apellido: "+patient[i].getNumAffiliation()+"\n"+
-							"** Numero de afiliacion: "+patient[i].getNumAffiliation()+"\n"+
-							"** Telefono de contacto: "+patient[i].getNumContactPatient()+"\n"+
+							"** Apellido: "+patient[i].getLastName()+"\n"+
+							"** Numero de afiliacion: "+objCoomeva.getNumAffiliation()+"\n"+
 							"** Edad: "+patient[i].getAge()+"\n"+
 							"** Documento: "+patient[i].getId()+"\n"+
-							"** Medico tratante: "+patient[i].getNameDoc()+"\n"+
-							"**      - Telefono: "+patient[i].getNumDoc()+"\n"+
-							"**      - Numero de licencia: "+patient[i].getNumLicense()+"\n"+
-							"** Categoría: "+patient[i].getCategory()+"\n"+
+							"** Categoria: "+objCoomeva.getCategory()+"\n"+
 		           			"**************************************************************";
 
 				verific = true;
 			}
-			else if(patient[i] != null && patient[i] instanceof SURAPatient){
+			else if(patient[i] != null && patient[i] instanceof SURAPatient && id.equalsIgnoreCase(patient[i].getId())){
+
+				objSURA = (SURAPatient) patient[i];
+
 				message = "\n****************** informacion del paciente ******************\n"+
 							"** Nombre: "+patient[i].getName()+"\n"+
-							"** Apellido: "+patient[i].getNumAffiliation()+"\n"+
-							"** Numero de afiliacion: "+patient[i].getNumAffiliation()+"\n"+
-							"** Telefono de contacto: "+patient[i].getNumContactPatient()+"\n"+
+							"** Apellido: "+patient[i].getLastName()+"\n"+
+							"** Numero de afiliacion: "+objSURA.getNumAffiliation()+"\n"+
 							"** Edad: "+patient[i].getAge()+"\n"+
 							"** Documento: "+patient[i].getId()+"\n"+
-							"** Medico tratante: "+patient[i].getNameDoc()+"\n"+
-							"**      - Telefono: "+patient[i].getNumDoc()+"\n"+
-							"**      - Numero de licencia: "+patient[i].getNumLicense()+"\n"+
-							"** Minimo que cubre la poliza: "+patient[i].getMinPolicy()+"\n"+
-							"** Maximo que cubre la poliza: "+patient[i].getMaxPolicy()+"\n"+
+							"** Minimo que cubre la poliza: "+objSURA.getMinPolicy()+"\n"+
+							"** Maximo que cubre la poliza: "+objSURA.getMaxPolicy()+"\n"+
 		           			"**************************************************************";
 
 				verific = true;
 			}
-			else if(patient[i] != null && patient[i] instanceof OtherPatient){
+			else if(patient[i] != null && patient[i] instanceof OtherPatient && id.equalsIgnoreCase(patient[i].getId())){
+
+				objOther = (OtherPatient) patient[i];
+
 				message = "\n****************** informacion del paciente ******************\n"+
 							"** Nombre: "+patient[i].getName()+"\n"+
-							"** Apellido: "+patient[i].getNumAffiliation()+"\n"+
-							"** Numero de afiliacion: "+patient[i].getNumAffiliation()+"\n"+
-							"** Telefono de contacto: "+patient[i].getNumContactPatient()+"\n"+
+							"** Apellido: "+patient[i].getLastName()+"\n"+
+							"** Numero de afiliacion: "+objOther.getNumAffiliation()+"\n"+
 							"** Edad: "+patient[i].getAge()+"\n"+
-							"** Documento: "+patient[i].getId()+"\n"+
-							"** Medico tratante: "+patient[i].getNameDoc()+"\n"+
-							"**      - Telefono: "+patient[i].getNumDoc()+"\n"+
-							"**      - Numero de licencia: "+patient[i].getNumLicense()+"\n"+
-							"** Nombre de la organizacion: "+patient[i].getNomOrganization()+"\n"+
-							"** Telefono de la organizacion: "+patient[i].getPhone()+"\n"+
+							"** Documento: "+patient[i].getId()+"\n"+ 
+							"** Nombre de la organizacion: "+objOther.getNomOrganization()+"\n"+
+							"** Telefono de la organizacion: "+objOther.getPhone()+"\n"+
 		           			"**************************************************************";
 
 				verific = true;
@@ -250,77 +262,81 @@ public class VaccinationCenter{
 
 		String message = "";
 
+		PrivatePatient objPrivate;
+		EPSPatient objEPS;
+		CoomevaPatient objCoomeva;
+		SURAPatient objSURA;
+		OtherPatient objOther;
+
 		for(int i = 0; i<patient.length; i++){
 
 			if(patient[i] != null && patient[i] instanceof PrivatePatient){
-				message += "\n****************** informacion del paciente ******************\n"+
-							"** Nombre: "+patient[i].getName()+"\n"+
-							"** Apellido: "+patient[i].getLasName()+"\n"+
-							"** Telefono de contacto: "+patient[i].getNumContactPatient()+"\n"+
-							"** Edad: "+patient[i].getAge()+"\n"+
-							"** Documento: "+patient[i].getId()+"\n"+
-							"** Medico tratante: "+patient[i].getNameDoc()+"\n"+
-							"**      - Telefono: "+patient[i].getNumDoc()+"\n"+
-							"**      - Numero de licencia: "+patient[i].getNumLicense()+"\n"+
-		           			"**************************************************************";
-			}
-			else if(patient[i] != null && patient[i] instanceof EPSPatient){
-				message += "\n****************** informacion del paciente ******************\n"+
-							"** Nombre: "+patient[i].getName()+"\n"+
-							"** Apellido: "+patient[i].getLasName()+"\n"+
-							"** Telefono de contacto: "+patient[i].getNumContactPatient()+"\n"+
-							"** Edad: "+patient[i].getAge()+"\n"+
-							"** Documento: "+patient[i].getId()+"\n"+
-							"** Medico tratante: "+patient[i].getNameDoc()+"\n"+
-							"**      - Telefono: "+patient[i].getNumDoc()+"\n"+
-							"**      - Numero de licencia: "+patient[i].getNumLicense()+"\n"+
-							"** Nombre de la EPS: "+patient[i].getEps()+"\n"+
-							"** Numero de orden de servicio: "+patient[i].getNumService()+"\n"+
-		           			"**************************************************************";;
-			}
-			else if(patient[i] != null && patient[i] instanceof CoomevaPatient){
+
+				objPrivate = (PrivatePatient) patient[i];
 
 				message += "\n****************** informacion del paciente ******************\n"+
 							"** Nombre: "+patient[i].getName()+"\n"+
-							"** Apellido: "+patient[i].getNumAffiliation()+"\n"+
-							"** Numero de afiliacion: "+patient[i].getNumAffiliation()+"\n"+
-							"** Telefono de contacto: "+patient[i].getNumContactPatient()+"\n"+
+							"** Apellido: "+patient[i].getLastName()+"\n"+
+							"** Telefono de contacto: "+objPrivate.getNumContactPatient()+"\n"+
 							"** Edad: "+patient[i].getAge()+"\n"+
 							"** Documento: "+patient[i].getId()+"\n"+
-							"** Medico tratante: "+patient[i].getNameDoc()+"\n"+
-							"**      - Telefono: "+patient[i].getNumDoc()+"\n"+
-							"**      - Numero de licencia: "+patient[i].getNumLicense()+"\n"+
-							"** Categoría: "+patient[i].getCategory()+"\n"+
+							"** Medico tratante: "+objPrivate.getNameDoc()+"\n"+
+							"**      - Telefono: "+objPrivate.getNumDoc()+"\n"+
+							"**      - Numero de licencia: "+objPrivate.getNumLicense()+"\n"+
+		           			"**************************************************************\n";
+			}
+			else if(patient[i] != null && patient[i] instanceof EPSPatient){
+
+				objEPS = (EPSPatient) patient[i];
+
+				message += "\n****************** informacion del paciente ******************\n"+
+							"** Nombre: "+patient[i].getName()+"\n"+
+							"** Apellido: "+patient[i].getLastName()+"\n"+
+							"** Edad: "+patient[i].getAge()+"\n"+
+							"** Documento: "+patient[i].getId()+"\n"+
+							"** Nombre de la EPS: "+objEPS.getEps()+"\n"+
+							"** Numero de orden de servicio: "+objEPS.getNumService()+"\n"+
+		           			"**************************************************************\n";
+			}
+			else if(patient[i] != null && patient[i] instanceof CoomevaPatient){
+
+				objCoomeva = (CoomevaPatient) patient[i];
+
+				message += "\n****************** informacion del paciente ******************\n"+
+							"** Nombre: "+patient[i].getName()+"\n"+
+							"** Apellido: "+patient[i].getLastName()+"\n"+
+							"** Numero de afiliacion: "+objCoomeva.getNumAffiliation()+"\n"+
+							"** Edad: "+patient[i].getAge()+"\n"+
+							"** Documento: "+patient[i].getId()+"\n"+
+							"** Categoría: "+objCoomeva.getCategory()+"\n"+
 		           			"**************************************************************";
 			}
 			else if(patient[i] != null && patient[i] instanceof SURAPatient){
+
+				objSURA = (SURAPatient) patient[i];
+
 				message += "\n****************** informacion del paciente ******************\n"+
 							"** Nombre: "+patient[i].getName()+"\n"+
-							"** Apellido: "+patient[i].getNumAffiliation()+"\n"+
-							"** Numero de afiliacion: "+patient[i].getNumAffiliation()+"\n"+
-							"** Telefono de contacto: "+patient[i].getNumContactPatient()+"\n"+
+							"** Apellido: "+patient[i].getLastName()+"\n"+
+							"** Numero de afiliacion: "+objSURA.getNumAffiliation()+"\n"+
 							"** Edad: "+patient[i].getAge()+"\n"+
 							"** Documento: "+patient[i].getId()+"\n"+
-							"** Medico tratante: "+patient[i].getNameDoc()+"\n"+
-							"**      - Telefono: "+patient[i].getNumDoc()+"\n"+
-							"**      - Numero de licencia: "+patient[i].getNumLicense()+"\n"+
-							"** Minimo que cubre la poliza: "+patient[i].getMinPolicy()+"\n"+
-							"** Maximo que cubre la poliza: "+patient[i].getMaxPolicy()+"\n"+
+							"** Minimo que cubre la poliza: "+objSURA.getMinPolicy()+"\n"+
+							"** Maximo que cubre la poliza: "+objSURA.getMaxPolicy()+"\n"+
 		           			"**************************************************************";
 			}
 			else if(patient[i] != null && patient[i] instanceof OtherPatient){
+
+				objOther = (OtherPatient) patient[i];
+
 				message += "\n****************** informacion del paciente ******************\n"+
 							"** Nombre: "+patient[i].getName()+"\n"+
-							"** Apellido: "+patient[i].getNumAffiliation()+"\n"+
-							"** Numero de afiliacion: "+patient[i].getNumAffiliation()+"\n"+
-							"** Telefono de contacto: "+patient[i].getNumContactPatient()+"\n"+
+							"** Apellido: "+patient[i].getLastName()+"\n"+
+							"** Numero de afiliacion: "+objOther.getNumAffiliation()+"\n"+
 							"** Edad: "+patient[i].getAge()+"\n"+
-							"** Documento: "+patient[i].getId()+"\n"+
-							"** Medico tratante: "+patient[i].getNameDoc()+"\n"+
-							"**      - Telefono: "+patient[i].getNumDoc()+"\n"+
-							"**      - Numero de licencia: "+patient[i].getNumLicense()+"\n"+
-							"** Nombre de la organizacion: "+patient[i].getNomOrganization()+"\n"+
-							"** Telefono de la organizacion: "+patient[i].getPhone()+"\n"+
+							"** Documento: "+patient[i].getId()+"\n"+ 
+							"** Nombre de la organizacion: "+objOther.getNomOrganization()+"\n"+
+							"** Telefono de la organizacion: "+objOther.getPhone()+"\n"+
 		           			"**************************************************************";
 			}
 		}

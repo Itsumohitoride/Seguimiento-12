@@ -54,13 +54,13 @@ public class Main{
 			System.out.println("***********************************************************************");
 			break;
 			case 1:
-			if(mcs.getUsers()[VaccinationCenter.PATIENT-1] != null){
+			if(center.getPatient()[VaccinationCenter.PATIENT-1] != null){
 				System.out.println("***********************************************************************");
 				System.out.println("*             Ya se registro el numero maximo de pacientes            *");
 				System.out.println("***********************************************************************");
 			}
 			else{
-				createPatient();
+				registerPatient();
 			}
 			break;
 			case 2:
@@ -92,8 +92,8 @@ public class Main{
 
 	public void registerPatient(){
 
-		String verific, name, lastName, id, numContactPatient, nameDoc, numLicense, eps, numService;
-		int age, typePatient, category;
+		String verific, name, lastName, id, numContactPatient, nameDoc, numDoc, numLicense, eps, numService, numAffiliation, nomOrganization;
+		int age, typePatient, category, minPolicy, maxPolicy, phone, option;
 		boolean find = true;
 		boolean cont; 
 
@@ -110,7 +110,7 @@ public class Main{
 				System.out.println("Ingrese el/los apellidos del paciente");
 				lastName = lector.nextLine();
 
-				find = mcs.findPatient(name,lastName);
+				find = center.findPatient(name,lastName);
 
 				if(find){
 					System.out.println("El paciente ya se encuentra registrado, ingrese otro");
@@ -194,7 +194,7 @@ public class Main{
 							System.out.println("****************************************");
 
 							do{
-								category = lector.nextInt();
+								category = lector.nextInt();lector.nextLine();
 
 								if(category != 1 && category != 2 && category != 3){
 									System.out.println("**********************************************************************");
@@ -210,10 +210,10 @@ public class Main{
 							case 2:
 
 							System.out.println("Ingrese el valor minimo que cubre la poliza del paciente");
-							minPolicy = lector.nextLine();
+							minPolicy = lector.nextInt();
 
 							System.out.println("Ingrese el valor maximo que cubre la poliza del paciente");
-							maxPolicy = lector.nextLine();
+							maxPolicy = lector.nextInt();lector.nextLine();
 
 							center.createPatient(name,lastName,age,id,numAffiliation,minPolicy,maxPolicy);
 
@@ -224,7 +224,7 @@ public class Main{
 							nomOrganization = lector.nextLine();
 
 							System.out.println("Ingrese un telefono para confirmar el servicio que se le presta al paciente");
-							phone = lector.nextLine();
+							phone = lector.nextInt();lector.nextLine();
 
 							center.createPatient(name,lastName,age,id,numAffiliation,nomOrganization,phone);
 
@@ -247,7 +247,7 @@ public class Main{
 			}while(typePatient != 1 && typePatient != 2 && typePatient != 3);
 
 
-			if(mcs.getUsers()[VaccinationCenter.N_USERS-1] != null){
+			if(center.getPatient()[VaccinationCenter.PATIENT-1] != null){
 				System.out.println("**********************************************************************");
 				System.out.println("           Este es el ultimo usuario que se puede registrar           ");
 				System.out.println("**********************************************************************");
@@ -257,8 +257,6 @@ public class Main{
 				System.out.println("Desea ingresar otro paciente? (Si/No)");
 				verific = lector.nextLine();
 			}
-
-			center.createPatient(name,lastName,age,id);
 		}while(verific.equalsIgnoreCase(YES));
 	}
 
@@ -283,13 +281,12 @@ public class Main{
 		System.out.println("Ingrese el documento de identidad del paciente que desea buscar");
 		id = lector.nextLine();
 
-		verific = center.findPatient(id);
-
-		if(!verific){
+		if(!center.findPatient(id)){
 			System.out.println("Este paciente no existe en la base de datos");
 		}
 		else{
 			message = center.showInformation(id);
+			System.out.println(message);
 		}
 	}
 
@@ -307,5 +304,7 @@ public class Main{
 		System.out.println(message);
 
 		messagePatient = center.showAllPatient();
+
+		System.out.println(messagePatient);
 	}
 }

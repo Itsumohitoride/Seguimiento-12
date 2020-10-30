@@ -1,6 +1,6 @@
 package model;
 
-public class abstract PrepaidMedicinePatient extends Patient{
+public abstract class PrepaidMedicinePatient extends Patient{
 
 	//Attribute
 

@@ -1,6 +1,6 @@
 package model;
 
-public class abstract Patient{
+public abstract class Patient{
 
 	//Attribute
 
@@ -44,7 +44,7 @@ public class abstract Patient{
 	}
 
 	public String getId(){
-		return name;
+		return id;
 	}
 
 	public void setId(String id){

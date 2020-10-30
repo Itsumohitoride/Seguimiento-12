@@ -5,9 +5,9 @@ public class OtherPatient extends PrepaidMedicinePatient{
 	//Attribute
 
 	private String nomOrganization;
-	private String phone;
+	private int phone;
 
-	public OtherPatient(String name, String lastName, int age, String id, String numAffiliation, String nomOrganization, String phone){
+	public OtherPatient(String name, String lastName, int age, String id, String numAffiliation, String nomOrganization, int phone){
 
 		super(name,lastName,age,id,numAffiliation);
 		this.nomOrganization = nomOrganization;
@@ -22,11 +22,11 @@ public class OtherPatient extends PrepaidMedicinePatient{
 		this.nomOrganization = nomOrganization;
 	}
 
-	public String getPhone(){
+	public int getPhone(){
 		return phone;
 	}
 
-	public void setPhone(String phone){
+	public void setPhone(int phone){
 		this.phone = phone;
 	}
 }
