@@ -70,7 +70,7 @@ public class Main{
 			searchPatient();
 			break;
 			case 4:
-			
+			fullInformation();
 			break;
 			default:
 			System.out.println("**********************************************************************");
@@ -289,7 +289,23 @@ public class Main{
 			System.out.println("Este paciente no existe en la base de datos");
 		}
 		else{
-			message
+			message = center.showInformation(id);
 		}
+	}
+
+	public void fullInformation(){
+
+		String message = "";
+		String messagePatient = "";
+
+		System.out.println("**********************************************************************");
+		System.out.println("*                 TODA LA INFORMACION DEL CENTRO                     *");
+		System.out.println("**********************************************************************");
+		
+		message = center.showInformation();
+
+		System.out.println(message);
+
+		
 	}
 }

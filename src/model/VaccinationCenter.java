@@ -164,39 +164,166 @@ public class VaccinationCenter{
 		for(int i = 0; i<patient.length && !verific; i++){
 
 			if(patient[i] != null && patient[i] instanceof PrivatePatient){
-				message = "\n********** informacion del paciente "+patient[i].getName()+" "+patient[i].getLasName()+" **********\n"+
+				message = "\n****************** informacion del paciente ******************\n"+
+							"** Nombre: "+patient[i].getName()+"\n"+
+							"** Apellido: "+patient[i].getLasName()+"\n"+
 							"** Telefono de contacto: "+patient[i].getNumContactPatient()+"\n"+
 							"** Edad: "+patient[i].getAge()+"\n"+
 							"** Documento: "+patient[i].getId()+"\n"+
 							"** Medico tratante: "+patient[i].getNameDoc()+"\n"+
 							"**      - Telefono: "+patient[i].getNumDoc()+"\n"+
 							"**      - Numero de licencia: "+patient[i].getNumLicense()+"\n"+
-		           			"************************************************************************";
+		           			"**************************************************************";
 		        verific = true;
 			}
 			else if(patient[i] != null && patient[i] instanceof EPSPatient){
-				message = "\n********** informacion del paciente "+patient[i].getName()+" "+patient[i].getLasName()+" **********\n"+
+				message = "\n****************** informacion del paciente ******************\n"+
+							"** Nombre: "+patient[i].getName()+"\n"+
+							"** Apellido: "+patient[i].getLasName()+"\n"+
 							"** Telefono de contacto: "+patient[i].getNumContactPatient()+"\n"+
 							"** Edad: "+patient[i].getAge()+"\n"+
 							"** Documento: "+patient[i].getId()+"\n"+
+							"** Medico tratante: "+patient[i].getNameDoc()+"\n"+
+							"**      - Telefono: "+patient[i].getNumDoc()+"\n"+
+							"**      - Numero de licencia: "+patient[i].getNumLicense()+"\n"+
 							"** Nombre de la EPS: "+patient[i].getEps()+"\n"+
 							"** Numero de orden de servicio: "+patient[i].getNumService()+"\n"+
-		           			"************************************************************************";
+		           			"**************************************************************";
 		        verific = true;
 			}
 			else if(patient[i] != null && patient[i] instanceof CoomevaPatient){
-				
+
+				message = "\n****************** informacion del paciente ******************\n"+
+							"** Nombre: "+patient[i].getName()+"\n"+
+							"** Apellido: "+patient[i].getNumAffiliation()+"\n"+
+							"** Numero de afiliacion: "+patient[i].getNumAffiliation()+"\n"+
+							"** Telefono de contacto: "+patient[i].getNumContactPatient()+"\n"+
+							"** Edad: "+patient[i].getAge()+"\n"+
+							"** Documento: "+patient[i].getId()+"\n"+
+							"** Medico tratante: "+patient[i].getNameDoc()+"\n"+
+							"**      - Telefono: "+patient[i].getNumDoc()+"\n"+
+							"**      - Numero de licencia: "+patient[i].getNumLicense()+"\n"+
+							"** Categoría: "+patient[i].getCategory()+"\n"+
+		           			"**************************************************************";
+
+				verific = true;
 			}
 			else if(patient[i] != null && patient[i] instanceof SURAPatient){
-				
+				message = "\n****************** informacion del paciente ******************\n"+
+							"** Nombre: "+patient[i].getName()+"\n"+
+							"** Apellido: "+patient[i].getNumAffiliation()+"\n"+
+							"** Numero de afiliacion: "+patient[i].getNumAffiliation()+"\n"+
+							"** Telefono de contacto: "+patient[i].getNumContactPatient()+"\n"+
+							"** Edad: "+patient[i].getAge()+"\n"+
+							"** Documento: "+patient[i].getId()+"\n"+
+							"** Medico tratante: "+patient[i].getNameDoc()+"\n"+
+							"**      - Telefono: "+patient[i].getNumDoc()+"\n"+
+							"**      - Numero de licencia: "+patient[i].getNumLicense()+"\n"+
+							"** Minimo que cubre la poliza: "+patient[i].getMinPolicy()+"\n"+
+							"** Maximo que cubre la poliza: "+patient[i].getMaxPolicy()+"\n"+
+		           			"**************************************************************";
+
+				verific = true;
 			}
 			else if(patient[i] != null && patient[i] instanceof OtherPatient){
-				
+				message = "\n****************** informacion del paciente ******************\n"+
+							"** Nombre: "+patient[i].getName()+"\n"+
+							"** Apellido: "+patient[i].getNumAffiliation()+"\n"+
+							"** Numero de afiliacion: "+patient[i].getNumAffiliation()+"\n"+
+							"** Telefono de contacto: "+patient[i].getNumContactPatient()+"\n"+
+							"** Edad: "+patient[i].getAge()+"\n"+
+							"** Documento: "+patient[i].getId()+"\n"+
+							"** Medico tratante: "+patient[i].getNameDoc()+"\n"+
+							"**      - Telefono: "+patient[i].getNumDoc()+"\n"+
+							"**      - Numero de licencia: "+patient[i].getNumLicense()+"\n"+
+							"** Nombre de la organizacion: "+patient[i].getNomOrganization()+"\n"+
+							"** Telefono de la organizacion: "+patient[i].getPhone()+"\n"+
+		           			"**************************************************************";
+
+				verific = true;
 			}
 		}
+		return message;
+	}
 
-		
+	public String showInformation(){
 
+		String message = "";
+
+		for(int i = 0; i<patient.length; i++){
+
+			if(patient[i] != null && patient[i] instanceof PrivatePatient){
+				message += "\n****************** informacion del paciente ******************\n"+
+							"** Nombre: "+patient[i].getName()+"\n"+
+							"** Apellido: "+patient[i].getLasName()+"\n"+
+							"** Telefono de contacto: "+patient[i].getNumContactPatient()+"\n"+
+							"** Edad: "+patient[i].getAge()+"\n"+
+							"** Documento: "+patient[i].getId()+"\n"+
+							"** Medico tratante: "+patient[i].getNameDoc()+"\n"+
+							"**      - Telefono: "+patient[i].getNumDoc()+"\n"+
+							"**      - Numero de licencia: "+patient[i].getNumLicense()+"\n"+
+		           			"**************************************************************";
+			}
+			else if(patient[i] != null && patient[i] instanceof EPSPatient){
+				message += "\n****************** informacion del paciente ******************\n"+
+							"** Nombre: "+patient[i].getName()+"\n"+
+							"** Apellido: "+patient[i].getLasName()+"\n"+
+							"** Telefono de contacto: "+patient[i].getNumContactPatient()+"\n"+
+							"** Edad: "+patient[i].getAge()+"\n"+
+							"** Documento: "+patient[i].getId()+"\n"+
+							"** Medico tratante: "+patient[i].getNameDoc()+"\n"+
+							"**      - Telefono: "+patient[i].getNumDoc()+"\n"+
+							"**      - Numero de licencia: "+patient[i].getNumLicense()+"\n"+
+							"** Nombre de la EPS: "+patient[i].getEps()+"\n"+
+							"** Numero de orden de servicio: "+patient[i].getNumService()+"\n"+
+		           			"**************************************************************";;
+			}
+			else if(patient[i] != null && patient[i] instanceof CoomevaPatient){
+
+				message += "\n****************** informacion del paciente ******************\n"+
+							"** Nombre: "+patient[i].getName()+"\n"+
+							"** Apellido: "+patient[i].getNumAffiliation()+"\n"+
+							"** Numero de afiliacion: "+patient[i].getNumAffiliation()+"\n"+
+							"** Telefono de contacto: "+patient[i].getNumContactPatient()+"\n"+
+							"** Edad: "+patient[i].getAge()+"\n"+
+							"** Documento: "+patient[i].getId()+"\n"+
+							"** Medico tratante: "+patient[i].getNameDoc()+"\n"+
+							"**      - Telefono: "+patient[i].getNumDoc()+"\n"+
+							"**      - Numero de licencia: "+patient[i].getNumLicense()+"\n"+
+							"** Categoría: "+patient[i].getCategory()+"\n"+
+		           			"**************************************************************";
+			}
+			else if(patient[i] != null && patient[i] instanceof SURAPatient){
+				message += "\n****************** informacion del paciente ******************\n"+
+							"** Nombre: "+patient[i].getName()+"\n"+
+							"** Apellido: "+patient[i].getNumAffiliation()+"\n"+
+							"** Numero de afiliacion: "+patient[i].getNumAffiliation()+"\n"+
+							"** Telefono de contacto: "+patient[i].getNumContactPatient()+"\n"+
+							"** Edad: "+patient[i].getAge()+"\n"+
+							"** Documento: "+patient[i].getId()+"\n"+
+							"** Medico tratante: "+patient[i].getNameDoc()+"\n"+
+							"**      - Telefono: "+patient[i].getNumDoc()+"\n"+
+							"**      - Numero de licencia: "+patient[i].getNumLicense()+"\n"+
+							"** Minimo que cubre la poliza: "+patient[i].getMinPolicy()+"\n"+
+							"** Maximo que cubre la poliza: "+patient[i].getMaxPolicy()+"\n"+
+		           			"**************************************************************";
+			}
+			else if(patient[i] != null && patient[i] instanceof OtherPatient){
+				message += "\n****************** informacion del paciente ******************\n"+
+							"** Nombre: "+patient[i].getName()+"\n"+
+							"** Apellido: "+patient[i].getNumAffiliation()+"\n"+
+							"** Numero de afiliacion: "+patient[i].getNumAffiliation()+"\n"+
+							"** Telefono de contacto: "+patient[i].getNumContactPatient()+"\n"+
+							"** Edad: "+patient[i].getAge()+"\n"+
+							"** Documento: "+patient[i].getId()+"\n"+
+							"** Medico tratante: "+patient[i].getNameDoc()+"\n"+
+							"**      - Telefono: "+patient[i].getNumDoc()+"\n"+
+							"**      - Numero de licencia: "+patient[i].getNumLicense()+"\n"+
+							"** Nombre de la organizacion: "+patient[i].getNomOrganization()+"\n"+
+							"** Telefono de la organizacion: "+patient[i].getPhone()+"\n"+
+		           			"**************************************************************";
+			}
+		}
 		return message;
 	}
 }
