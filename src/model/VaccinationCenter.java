@@ -246,7 +246,7 @@ public class VaccinationCenter{
 		return message;
 	}
 
-	public String showInformation(){
+	public String showAllPatient(){
 
 		String message = "";
 

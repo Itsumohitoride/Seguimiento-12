@@ -306,6 +306,6 @@ public class Main{
 
 		System.out.println(message);
 
-		
+		messagePatient = center.showAllPatient();
 	}
 }
