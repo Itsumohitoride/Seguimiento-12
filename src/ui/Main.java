@@ -64,10 +64,10 @@ public class Main{
 			}
 			break;
 			case 2:
-			
+			showInformation();
 			break;
 			case 3:
-
+			searchPatient();
 			break;
 			case 4:
 			
@@ -93,7 +93,7 @@ public class Main{
 	public void registerPatient(){
 
 		String verific, name, lastName, id, numContactPatient, nameDoc, numLicense, eps, numService;
-		int age, typePatient;
+		int age, typePatient, category;
 		boolean find = true;
 		boolean cont; 
 
@@ -260,5 +260,36 @@ public class Main{
 
 			center.createPatient(name,lastName,age,id);
 		}while(verific.equalsIgnoreCase(YES));
+	}
+
+	public void showInformation(){
+
+		String message = "";
+
+		System.out.println("**********************************************************************");
+		System.out.println("*                  INFORMACION DE LOS PACIENTES                      *");
+		System.out.println("**********************************************************************");
+		
+		message = center.showInformation();
+
+		System.out.println(message);
+	}
+
+	public void searchPatient(){
+
+		String id = "";
+		String message = "";
+
+		System.out.println("Ingrese el documento de identidad del paciente que desea buscar");
+		id = lector.nextLine();
+
+		verific = center.findPatient(id);
+
+		if(!verific){
+			System.out.println("Este paciente no existe en la base de datos");
+		}
+		else{
+			message
+		}
 	}
 }
