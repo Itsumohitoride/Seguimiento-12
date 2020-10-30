@@ -19,4 +19,36 @@ public class PrivatePatient extends Patient{
 		this.numDoc = numDoc;
 		this.numLicense = numLicense;
 	}
+
+	public String getNumContactPatient(){
+		return numContactPatient;
+	}
+
+	public void setNumContactPatient(String numContactPatient){
+		this.numContactPatient = numContactPatient;
+	}
+
+	public String getNameDoc(){
+		return nameDoc;
+	}
+
+	public void setNameDoc(String nameDoc){
+		this.nameDoc = nameDoc;
+	}
+
+	public String getNumDoc(){
+		return numDoc;
+	}
+
+	public void setNumDoc(String numDoc){
+		this.numDoc = numDoc;
+	}
+
+	public String getNumLicense(){
+		return numLicense;
+	}
+
+	public void setNumLicense(String numLicense){
+		this.numLicense = numLicense;
+	}
 }

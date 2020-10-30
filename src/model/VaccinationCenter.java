@@ -15,13 +15,13 @@ public class VaccinationCenter{
 		patient = new Patient[PATIENT];
 	}
 
-	public boolean createPatient(String name, String lastName, int age, String id, String numContactPatient, String nameDoc, String numDoc, String numLicence){
+	public boolean createPatient(String name, String lastName, int age, String id, String numContactPatient, String nameDoc, String numDoc, String numLicense){
 
 		boolean verific = false;
 
 		for(int i = 0; i<patient.length && !verific; i++){
 			if(patient[i] == null){
-				patient[i] = new PrivatePatient(name,lastName,age,id,numContactPatient,nameDoc,numDoc,numLicence);
+				patient[i] = new PrivatePatient(name,lastName,age,id,numContactPatient,nameDoc,numDoc,numLicense);
 				verific = true;
 			}
 		}
@@ -43,13 +43,13 @@ public class VaccinationCenter{
 		return verific;
 	}
 
-	public boolean createPatient(String name, String lastName, int age, String id, int category){
+	public boolean createPatient(String name, String lastName, int age, String id, String numAffiliation,int category){
 
 		boolean verific = false;
 
 		for(int i = 0; i<patient.length && !verific; i++){
 			if(patient[i] == null){
-				patient[i] = new Patient(name,lastName,age,id,organization,category);
+				patient[i] = new CoomevaPatient(name,lastName,age,id,numAffiliation,category);
 				verific = true;
 			}
 		}
@@ -57,13 +57,13 @@ public class VaccinationCenter{
 		return verific;
 	}
 
-	public boolean createPatient(String name, String lastName, int age, String id, String minPolicy, String maxPolicy){
+	public boolean createPatient(String name, String lastName, int age, String id, String numAffiliation, String minPolicy, String maxPolicy){
 
 		boolean verific = false;
 
 		for(int i = 0; i<patient.length && !verific; i++){
 			if(patient[i] == null){
-				patient[i] = new Patient(name,lastName,age,id,minPolicy,maxPolicy);
+				patient[i] = new SURAPatient(name,lastName,age,id,numAffiliation,minPolicy,maxPolicy);
 				verific = true;
 			}
 		}
@@ -71,13 +71,13 @@ public class VaccinationCenter{
 		return verific;
 	}
 
-	public boolean createPatient(String name, String lastName, int age, String id,String nomOrganization, String phone){
+	public boolean createPatient(String name, String lastName, int age, String id, String numAffiliation, String nomOrganization, String phone){
 
 		boolean verific = false;
 
 		for(int i = 0; i<patient.length && !verific; i++){
 			if(patient[i] == null){
-				patient[i] = new Patient(name,lastName,age,id,organization,category);
+				patient[i] = new OtherPatient(name,lastName,age,id,numAffiliation,nomOrganization,phone);
 				verific = true;
 			}
 		}
